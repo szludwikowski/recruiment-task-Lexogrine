@@ -1,0 +1,19 @@
+@use "@styles/breakpoints" as *;
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+  padding-inline: 1rem;
+
+  @include tablet {
+    padding-inline: 2rem;
+  }
+
+  @include desktop {
+    max-width: 1140px;
+  }
+
+  @include xlDesktop {
+    max-width: 1280px;
+  }
+}
