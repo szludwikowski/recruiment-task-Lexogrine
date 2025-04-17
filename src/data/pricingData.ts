@@ -1,7 +1,4 @@
-import type {
-  Benefit,
-  PricingPlan,
-} from "../sections/PricingTable/PricingTable.types";
+import { Benefit, PricingPlan } from "@components/sections/PricingTable";
 
 export const benefits: Benefit[] = [
   {
