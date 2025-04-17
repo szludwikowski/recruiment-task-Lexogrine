@@ -1,0 +1,91 @@
+@use "breakpoints" as *;
+
+@mixin display {
+  font-size: 2.5rem;
+  line-height: 2.75rem;
+
+  @include desktop {
+    font-size: 5rem;
+    line-height: 5.5rem;
+  }
+}
+
+@mixin h1 {
+  font-size: 2rem;
+  line-height: 2.4rem;
+
+  @include desktop {
+    font-size: 4rem;
+    line-height: 4.8rem;
+  }
+}
+
+@mixin h2 {
+  font-size: 1.5rem;
+  line-height: 1.8rem;
+
+  @include desktop {
+    font-size: 3rem;
+    line-height: 3.6rem;
+  }
+}
+
+@mixin h3 {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+
+  @include desktop {
+    font-size: 2rem;
+    line-height: 2.4rem;
+  }
+}
+
+@mixin h4 {
+  font-size: 1.125rem;
+  line-height: 1.35rem;
+
+  @include desktop {
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+  }
+}
+
+@mixin h5 {
+  font-size: 1.125rem; 
+  line-height: 1.35rem; 
+  letter-spacing: 0;
+
+  @include desktop {
+    font-size: 1.5rem; 
+    line-height: 1.8rem;
+  }
+}
+
+@mixin bodySmall {
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+}
+
+@mixin bodyRegular {
+  font-size: 0.875rem;
+  line-height: 1.313rem;
+}
+
+@mixin caption {
+  font-size: 0.625rem;
+  line-height: 0.938rem;
+}
+
+@mixin buttonLabel {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+@mixin navLabel {
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+
+  @include desktop {
+    font-size: 1.125rem;
+  }
+}
