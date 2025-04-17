@@ -1,82 +1,18 @@
 :root {
-    --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
-    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-    --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
-    --ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+    --primary: #25DAC5;
+    --secondary: #482BE7;
+    --third: #E93A7D;
+
+    --grey: #EBEAED;
+    --heading: #1E0E62;
   
-    --primary-100: #9E9E9E;
-    --primary-200: #818181;
-    --primary-300: #636363;
-    --primary-400: #464646;
-    --primary-500: #282828;
-    --primary-600: #202020;
-    --primary-700: #181818;
-    --primary-800: #101010;
-    --primary-900: #080808;
-  
-    --secondary-100: #EDEBE6;
-    --secondary-200: #DBD8CE;
-    --secondary-300: #C9C4B5;
-    --secondary-400: #B7B19D;
-    --secondary-500: #847E6A;
-    --secondary-600: #6A6555;
-    --secondary-700: #4F4C40;
-    --secondary-800: #35322A;
-    --secondary-900: #1A1915;
-  
-    --text-light: #F6F6F6;
-    --text-dark: #141414;
-    --text-description: #595959;
-  
-  
-    --text-white: #fefefe;
-    --text-black: #010101;
-    --black: #000000;
-    --white: #ffffff;
-    --background-white: #fefefe;
-    --background-grey: #f7f6f5;
-    --background-black: #030303;
-    --grey: #f5f5f5;
-    --button-grey: #d4d4d4;
-    --error: #df4747;
-    --available: #4ca800;
-    --reserved: #cc8500;
-    --unavailable: #e60000;
-  
-    --desktop-display: 92px;
-    --desktop-h1: 80px;
-    --desktop-h2: 64px;
-    --desktop-h3: 48px;
-    --desktop-h4: 32px;
-    --desktop-h5: 24px;
-    --desktop-large: 20px;
-    --desktop-regular: 16px;
-    --desktop-bodybold: 14px;
-    --desktop-bodysmall: 12px;
-    --desktop-sm: 12px;
-    --desktop-numbers-m: 64px;
-    --desktop-numbers-l: 48px;
-    --desktop-navLabel: 18px;
-    --desktop-buttonLabel: 16px;
-    --desktop-caption: 10px;
-  
-    --mobile-display: 64px;
-    --mobile-h1: 48px;
-    --mobile-h2: 36px;
-    --mobile-h3: 32px;
-    --mobile-h4: 24px;
-    --mobile-h5: 20px;
-    --mobile-subheader: 20px;
-    --mobile-regular: 14px;
-    --mobile-bodybold: 14px;
-    --mobile-bodysmall: 12px;
-    --mobile-sm: 12px;
-    --mobile-numbers-m: 32px;
-    --mobile-numbers-l: 48px;
-    --mobile-navLabel: 16px;
-    --mobile-buttonLabel: 16px;
-    --mobile-caption: 10px;
-  
+    --background: #2F1893;
+    --background-light: #FFF;
+
+    --text: rgba(21, 20, 57, 0.40);
+    --white: #FFFFFF;
+    --socials: #1DA1F2;
+
     --font-dm-sans: 'DM Sans', sans-serif;
     --font-regular: 400;
     --font-500: 500;
