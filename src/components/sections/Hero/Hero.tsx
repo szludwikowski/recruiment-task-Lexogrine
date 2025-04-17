@@ -2,6 +2,7 @@ import Container from "@components/layout/Container";
 import Button from "@components/ui/Button";
 import Form from "@components/ui/Form";
 import { useAuth } from "@context/AuthContext";
+import { useAnimationVariants } from "@hooks/useAnimationVariants";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +18,8 @@ const Hero = ({
 }: HeroProps) => {
   const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
+  const { slideInLeft, fadeIn, buttonHover, buttonTap } =
+    useAnimationVariants();
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -29,9 +32,10 @@ const Hero = ({
       <Container className={styles.inner}>
         <motion.div
           className={styles.content}
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ type: "spring", duration: 0.6 }}
+          variants={slideInLeft}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
         >
           <motion.h1 className={styles.heading}>{heading}</motion.h1>
 
@@ -39,8 +43,8 @@ const Hero = ({
 
           <motion.div
             className={styles.button}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={buttonHover}
+            whileTap={buttonTap}
           >
             <Button>{buttonText}</Button>
           </motion.div>
@@ -48,9 +52,10 @@ const Hero = ({
 
         <motion.div
           className={styles.formWrapper}
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+          variants={fadeIn}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
         >
           <Form />
         </motion.div>

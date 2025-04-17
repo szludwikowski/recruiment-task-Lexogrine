@@ -1,19 +1,24 @@
 import Container from "@components/layout/Container";
 import { pricingPlans } from "@data/pricingData";
+import { useAnimationVariants } from "@hooks/useAnimationVariants";
 import { motion } from "framer-motion";
 
 import PricingBox from "./PricingBox";
 import styles from "./PricingTable.module.scss";
+import { PricingTableProps } from "./PricingTable.types";
 
-const PricingTable = () => {
+const PricingTable = ({ className }: PricingTableProps) => {
+  const { fadeIn, staggerContainer } = useAnimationVariants();
+
   return (
-    <Container id="prices">
+    <Container id="prices" className={className}>
       <div className={styles.header}>
         <motion.h1
           className={styles.title}
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          variants={fadeIn}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
         >
           Simple & flexible pricing built for everyone
         </motion.h1>
@@ -29,11 +34,17 @@ const PricingTable = () => {
         </motion.p>
       </div>
 
-      <div className={styles.plansContainer}>
+      <motion.div
+        className={styles.plansContainer}
+        variants={staggerContainer}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+      >
         {pricingPlans.map((plan, index) => (
           <PricingBox key={plan.id} {...plan} index={index} />
         ))}
-      </div>
+      </motion.div>
     </Container>
   );
 };

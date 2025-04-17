@@ -1,6 +1,6 @@
 import Button from "@components/ui/Button";
-import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
+import { useAnimationVariants } from "@hooks/useAnimationVariants";
+import { motion } from "framer-motion";
 
 import styles from "../PricingTable.module.scss";
 import { PricingBoxProps } from "./PricingBox.types";
@@ -12,24 +12,15 @@ const PricingBox = ({
   highlight,
   index,
 }: PricingBoxProps) => {
-  const controls = useAnimation();
-
-  useEffect(() => {
-    controls.start({
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.4,
-        delay: index * 0.15,
-      },
-    });
-  }, [controls, index]);
+  const { slideUp, staggerItem, buttonHover, buttonTap } =
+    useAnimationVariants();
 
   return (
     <motion.div
       className={styles.planCard}
-      initial={{ opacity: 0, y: 40 }}
-      animate={controls}
+      variants={slideUp}
+      custom={index}
+      // The slideUp variant handles initial and animate states through parent
     >
       <div
         className={`${styles.planCardHeader} ${highlight ? styles.highlight : ""}`}
@@ -52,14 +43,13 @@ const PricingBox = ({
         </p>
       </div>
 
-      <ul className={styles.benefitsList}>
+      <motion.ul className={styles.benefitsList}>
         {benefits.map((item, idx) => (
           <motion.li
             key={idx}
             className={`${styles.benefitItem} ${!item.available ? styles.unavailable : ""}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: idx * 0.2 }}
+            variants={staggerItem}
+            // These variants will be controlled by the parent container
           >
             <span
               className={`${styles.checkIcon} ${!item.available ? styles.hidden : ""}`}
@@ -70,6 +60,7 @@ const PricingBox = ({
                 height="10"
                 viewBox="0 0 14 10"
                 fill="none"
+                aria-hidden="true"
               >
                 <path
                   d="M1 5.1001L4.97059 8.6001L13 1.6001"
@@ -83,9 +74,9 @@ const PricingBox = ({
             {item.name}
           </motion.li>
         ))}
-      </ul>
+      </motion.ul>
 
-      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+      <motion.div whileHover={buttonHover} whileTap={buttonTap}>
         <Button
           variant={highlight ? "highlight" : "outlined"}
           className={styles.actionButton}

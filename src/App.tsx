@@ -15,8 +15,13 @@ import Home from "./routes/Home/Home";
 import Pricing from "./routes/Pricing/Pricing";
 
 const AppRoutes = () => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, isInitializing } = useAuth();
   const location = useLocation();
+
+  // Show a loading state while authentication is being checked
+  if (isInitializing) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <AnimatePresence mode="wait" initial={false}>

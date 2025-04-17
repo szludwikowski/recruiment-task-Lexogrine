@@ -1,13 +1,10 @@
 import Button from "@components/ui/Button";
 import { FORM_CONTENT } from "@constants/form";
 import { useAuth } from "@context/AuthContext";
+import { useForm } from "@hooks/useForm";
 import { signIn, signUp } from "@services/authService";
-import {
-  FormData,
-  ValidationErrors,
-  validateForm,
-} from "@utils/validation/formValidation";
-import { FormEvent, useState } from "react";
+import { FormData, validateForm } from "@utils/validation/formValidation";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -23,57 +20,49 @@ const initialFormState: FormData = {
 const Form = ({ onSwitchToLogin }: FormProps) => {
   const { login } = useAuth();
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
   const [mode, setMode] = useState<FormMode>("signup");
-  const [formState, setFormState] = useState<FormData>(initialFormState);
-  const [errors, setErrors] = useState<ValidationErrors>({});
-
   const isSignup = mode === "signup";
+
+  // Use our custom form hook with explicit type parameter
+  const {
+    values,
+    errors,
+    touched,
+    isSubmitting,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    reset,
+  } = useForm<FormData>({
+    initialValues: initialFormState,
+    validator: (data) => validateForm(data, isSignup),
+    onSubmit: async (data) => {
+      try {
+        const response = isSignup
+          ? await signUp(data)
+          : await signIn(data.email, data.password);
+
+        if (response.success) {
+          toast.success(response.message);
+          login(data.email);
+          navigate("/pricing");
+        } else {
+          toast.error(response.message);
+        }
+      } catch (error: unknown) {
+        console.error("Form submission error:", error);
+        toast.error("An unexpected error occurred. Please try again.");
+      }
+    },
+  });
+
+  // Reset form when mode changes
+  useEffect(() => {
+    reset();
+  }, [mode, reset]);
+
   const content = isSignup ? FORM_CONTENT.signup : FORM_CONTENT.login;
   const commonContent = FORM_CONTENT.common;
-
-  const validateFormData = (): boolean => {
-    const validationErrors = validateForm(formState, isSignup);
-    setErrors(validationErrors);
-    return Object.keys(validationErrors).length === 0;
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
-    setFormState((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-
-    if (errors[name as keyof ValidationErrors]) {
-      setErrors((prev) => ({ ...prev, [name]: undefined }));
-    }
-  };
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    if (!validateFormData()) return;
-
-    setIsLoading(true);
-    try {
-      const response = isSignup
-        ? await signUp(formState)
-        : await signIn(formState.email, formState.password);
-
-      if (response.success) {
-        toast.success(response.message);
-        login();
-        navigate("/pricing");
-      } else {
-        toast.error(response.message);
-      }
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
-      toast.error("An unexpected error occurred. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const toggleMode = () => {
     if (isSignup && onSwitchToLogin) {
@@ -81,52 +70,80 @@ const Form = ({ onSwitchToLogin }: FormProps) => {
     } else {
       setMode((prev) => (prev === "signup" ? "login" : "signup"));
     }
-    setErrors({});
   };
 
+  // Show error only if field has been touched or form was submitted
+  const shouldShowError = (field: keyof FormData) =>
+    touched[field] && errors[field];
+
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit} noValidate>
       <h2 className={styles.heading}>{content.heading}</h2>
 
-      <input
-        type="email"
-        name="email"
-        placeholder={commonContent.emailPlaceholder}
-        className={styles.input}
-        value={formState.email}
-        onChange={handleInputChange}
-      />
-      {errors.email && <span className={styles.error}>{errors.email}</span>}
+      <div className={styles.inputGroup}>
+        <input
+          type="email"
+          name="email"
+          placeholder={commonContent.emailPlaceholder}
+          className={`${styles.input} ${shouldShowError("email") ? styles.inputError : ""}`}
+          value={values.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          aria-invalid={!!errors.email}
+          aria-describedby={errors.email ? "email-error" : undefined}
+        />
+        {shouldShowError("email") && (
+          <span className={styles.error} id="email-error" role="alert">
+            {errors.email}
+          </span>
+        )}
+      </div>
 
-      <input
-        type="password"
-        name="password"
-        placeholder={commonContent.passwordPlaceholder}
-        className={styles.input}
-        value={formState.password}
-        onChange={handleInputChange}
-      />
-      {errors.password && (
-        <span className={styles.error}>{errors.password}</span>
-      )}
+      <div className={styles.inputGroup}>
+        <input
+          type="password"
+          name="password"
+          placeholder={commonContent.passwordPlaceholder}
+          className={`${styles.input} ${shouldShowError("password") ? styles.inputError : ""}`}
+          value={values.password}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          aria-invalid={!!errors.password}
+          aria-describedby={errors.password ? "password-error" : undefined}
+        />
+        {shouldShowError("password") && (
+          <span className={styles.error} id="password-error" role="alert">
+            {errors.password}
+          </span>
+        )}
+      </div>
 
       {isSignup && (
-        <label className={styles.checkboxWrapper}>
-          <input
-            type="checkbox"
-            name="agreedToTerms"
-            className={styles.checkbox}
-            checked={formState.agreedToTerms}
-            onChange={handleInputChange}
-          />
-          <span>{commonContent.termsText}</span>
-        </label>
-      )}
-      {errors.agreedToTerms && (
-        <span className={styles.error}>{errors.agreedToTerms}</span>
+        <div className={styles.checkboxGroup}>
+          <label className={styles.checkboxWrapper}>
+            <input
+              type="checkbox"
+              name="agreedToTerms"
+              className={styles.checkbox}
+              checked={values.agreedToTerms}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              aria-invalid={!!errors.agreedToTerms}
+              aria-describedby={
+                errors.agreedToTerms ? "terms-error" : undefined
+              }
+            />
+            <span>{commonContent.termsText}</span>
+          </label>
+          {shouldShowError("agreedToTerms") && (
+            <span className={styles.error} id="terms-error" role="alert">
+              {errors.agreedToTerms}
+            </span>
+          )}
+        </div>
       )}
 
-      <Button type="submit" variant="secondary" isLoading={isLoading}>
+      <Button type="submit" variant="secondary" isLoading={isSubmitting}>
         {content.submitButton}
       </Button>
 
@@ -138,15 +155,13 @@ const Form = ({ onSwitchToLogin }: FormProps) => {
 
       <p className={styles.loginText}>
         {content.switchText}{" "}
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            toggleMode();
-          }}
+        <button
+          type="button"
+          className={styles.switchButton}
+          onClick={toggleMode}
         >
           {content.switchAction}
-        </a>
+        </button>
       </p>
     </form>
   );

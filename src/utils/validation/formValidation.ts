@@ -2,12 +2,14 @@ export interface ValidationErrors {
   email?: string;
   password?: string;
   agreedToTerms?: string;
+  [key: string]: string | undefined;
 }
 
 export interface FormData {
   email: string;
   password: string;
   agreedToTerms: boolean;
+  [key: string]: string | boolean | unknown;
 }
 
 export const validateEmail = (email: string): string | undefined => {

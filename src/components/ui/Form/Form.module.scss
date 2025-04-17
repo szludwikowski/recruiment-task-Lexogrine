@@ -6,7 +6,6 @@
   flex-direction: column;
   gap: 1rem;
   width: 100%;
-
 }
 
 .heading {
@@ -16,13 +15,38 @@
   margin-bottom: 1rem;
 }
 
+.inputGroup {
+  position: relative;
+  width: 100%;
+}
+
 .input {
   @include text-button;
+  width: 100%;
   padding: 0.75rem 1rem;
   border-radius: 9999px;
   border: 1px solid var(--grey);
   color: var(--text);
   box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(37, 218, 197, 0.2);
+  }
+  
+  &.inputError {
+    border-color: var(--third);
+    
+    &:focus {
+      box-shadow: 0 0 0 2px rgba(233, 58, 125, 0.2);
+    }
+  }
+}
+
+.checkboxGroup {
+  margin-bottom: 0.5rem;
 }
 
 .checkboxWrapper {
@@ -31,6 +55,7 @@
   align-items: center;
   gap: 0.5rem;
   color: var(--text);
+  cursor: pointer;
 }
 
 .checkbox {
@@ -38,6 +63,7 @@
   height: 1.5rem;
   accent-color: var(--primary);
   margin: 1rem 0;
+  cursor: pointer;
 }
 
 .divider {
@@ -69,21 +95,40 @@
   @include text-article;
   text-align: center;
   color: var(--text);
+}
 
-  a {
-    color: var(--primary);
-    text-decoration: none;
+.switchButton {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--primary);
+  text-decoration: none;
+  cursor: pointer;
 
-    &:hover {
-      text-decoration: underline;
-    }
+  &:hover {
+    text-decoration: underline;
   }
 }
 
 .error {
   color: var(--third);
   font-size: 0.8rem;
-  margin-top: -0.5rem;
-  margin-bottom: -0.25rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
   padding-left: 1rem;
+  display: block;
+  transition: all 0.2s ease;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
