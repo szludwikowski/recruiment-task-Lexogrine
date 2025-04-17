@@ -2,9 +2,7 @@ import Navigation from "@components/layout/Navigation";
 import { NAV_CTA, NAV_ITEMS } from "@constants/navigation";
 import React from "react";
 
-type LayoutProps = {
-  children: React.ReactNode;
-};
+import type { LayoutProps } from "./Layout.types";
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (

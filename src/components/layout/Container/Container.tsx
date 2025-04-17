@@ -1,4 +1,4 @@
-import cx from "clsx";
+import { cx } from "class-variance-authority";
 import React from "react";
 
 import styles from "./Container.module.scss";

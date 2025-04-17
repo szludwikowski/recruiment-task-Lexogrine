@@ -1,0 +1,79 @@
+@use "@styles/typography" as *;
+@use "@styles/breakpoints" as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.heading {
+  @include heading-3;
+  color: var(--heading);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.input {
+  @include text-button;
+  padding: 0.75rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid var(--grey);
+  color: var(--text);
+  box-sizing: border-box;
+}
+
+.checkboxWrapper {
+  @include text-body;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkbox {
+  width: 1.5rem;
+  height: 1.5rem;
+  accent-color: var(--primary);
+  margin: 1rem 0;
+}
+
+.divider {
+  @include text-body;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 0.5rem 0;
+  
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background-color: var(--grey);
+  }
+  
+  &::before {
+    margin-right: 0.75rem;
+  }
+  
+  &::after {
+    margin-left: 0.75rem;
+  }
+}
+
+.loginText {
+  @include text-article;
+  text-align: center;
+  color: var(--text);
+
+  a {
+    color: var(--primary);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

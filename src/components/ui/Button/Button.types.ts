@@ -5,6 +5,5 @@ export type ButtonProps<T extends ElementType = "button"> = {
   as?: T;
   variant?: "primary" | "secondary" | "social";
   isLoading?: boolean;
-  isDone?: boolean;
   className?: string;
 } & React.ComponentPropsWithoutRef<T>;
