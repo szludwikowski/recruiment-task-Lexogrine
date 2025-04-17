@@ -1,7 +1,6 @@
+import Navigation from "@components/layout/Navigation";
 import { NAV_CTA, NAV_ITEMS } from "@constants/navigation";
 import React from "react";
-
-import Navigation from "../Navigation";
 
 type LayoutProps = {
   children: React.ReactNode;
