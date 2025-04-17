@@ -1,4 +1,9 @@
 :root {
+    --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+    --ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+
     --primary: #25DAC5;
     --secondary: #482BE7;
     --third: #E93A7D;

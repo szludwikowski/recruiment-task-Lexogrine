@@ -1,0 +1,94 @@
+@use "@styles/breakpoints" as *;
+
+.wrapper {
+  width: 100%;
+  padding-block: 2rem;
+  color: var(--white);
+  position: relative;
+}
+
+.innerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--white);
+}
+
+.desktopNav {
+  display: none;
+
+  @include desktop {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  padding: 0;
+  margin: 0;
+}
+
+.button {
+  display: none;
+
+  @include desktop {
+    display: block;
+  }
+}
+
+.hamburger {
+  @include desktop {
+    display: none;
+  }
+}
+
+.mobileMenu {
+    display: none;
+  
+    @include maxTablet {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      background-color: var(--background);
+      padding: 1.5rem 2rem;
+      gap: 1.5rem;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-1rem);
+      transition:
+        opacity 0.4s var(--ease-out-expo),
+        transform 0.4s var(--ease-out-expo),
+        visibility 0.4s ease;
+      z-index: 1000;
+  
+      &.mobileMenuOpen {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0); 
+      }
+    }
+  }
+  
+
+.mobileMenuList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

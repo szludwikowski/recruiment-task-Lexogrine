@@ -1,0 +1,45 @@
+@use "@styles/typography" as *;
+
+.wrapper {
+  @include text-button;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &.primary {
+    background-color: var(--third);
+    color: var(--white);
+
+    &:hover {
+      background-color: #d92b6b; 
+    }
+  }
+
+  &.secondary {
+    background-color: transparent;
+    border: 1px solid var(--white);
+    color: var(--white);
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

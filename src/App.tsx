@@ -1,9 +1,14 @@
-import Container from "@components/layout/Container";
+import Header from "@components/Header";
+import Layout from "@components/layout/Layout";
 
 import "./App.css";
 
 function App() {
-  return <Container>Tekst</Container>;
+  return (
+    <Layout>
+      <Header />
+    </Layout>
+  );
 }
 
 export default App;
