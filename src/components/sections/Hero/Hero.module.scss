@@ -5,6 +5,7 @@
   background-color: var(--background);
   color: var(--white);
   padding: 2rem 0;
+  min-height: 100vh;
 
   @include desktop {
    padding: 4rem 0;
@@ -60,7 +61,6 @@
 
 .formWrapper {
   background-color: var(--white);
-  color: var(--text);
   border-radius: 0.75rem;
   padding: 2rem;
   width: 100%;
@@ -76,5 +76,20 @@
     flex: 1;
     max-width: none;
     padding: 2rem 4rem;
+  }
+}
+
+.pricingWrapper {
+  background-color: var(--white);
+  width: 100%;
+  min-height: calc(100vh - 4rem);
+  border-radius: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 3rem 1rem;
+  
+  @include tablet {
+    padding: 4rem 2rem;
   }
 }

@@ -1,43 +1,45 @@
 import Button from "@components/ui/Button";
 import Link from "@components/ui/Link";
 import { Squash as Hamburger } from "hamburger-react";
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import Container from "../Container";
 import styles from "./Navigation.module.scss";
 import type { NavigationProps } from "./Navigation.types";
 
-const Navigation: React.FC<NavigationProps> = ({ items, button }) => {
+const Navigation = ({ items, button }: NavigationProps) => {
   const [isOpen, setOpen] = useState(false);
   const [activeHash, setActiveHash] = useState(window.location.hash || "#");
+  const [activePath, setActivePath] = useState(window.location.pathname);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+    const handleKeyDown = (e: KeyboardEvent) =>
+      e.key === "Escape" && setOpen(false);
+    const handleLocationChange = () => {
+      setActiveHash(window.location.hash || "#");
+      setActivePath(window.location.pathname);
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+    window.addEventListener("hashchange", handleLocationChange);
+    window.addEventListener("popstate", handleLocationChange);
 
-  useEffect(() => {
-    const handleHashChange = () => {
-      setActiveHash(window.location.hash || "#");
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("hashchange", handleLocationChange);
+      window.removeEventListener("popstate", handleLocationChange);
     };
-
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
 
-  const handleItemClick = useCallback(() => {
-    setOpen(false);
-  }, []);
+  const handleItemClick = useCallback(() => setOpen(false), []);
 
   const isItemActive = (itemHref: string) => {
-    if (itemHref === "#") {
-      return activeHash === "" || activeHash === "#";
+    if (itemHref.startsWith("#")) {
+      return itemHref === "#"
+        ? (activeHash === "" || activeHash === "#") && activePath === "/"
+        : itemHref === activeHash;
     }
-    return itemHref === activeHash;
+    return activePath === itemHref;
   };
 
   return (

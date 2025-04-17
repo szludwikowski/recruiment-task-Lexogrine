@@ -1,4 +1,5 @@
 @use "@styles/breakpoints" as *;
+@use "@styles/typography" as *;
 
 .wrapper {
   width: 100%;
@@ -14,8 +15,7 @@
 }
 
 .logo {
-  font-weight: 700;
-  font-size: 1rem;
+  @include text-button;
   color: var(--white);
 }
 

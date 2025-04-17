@@ -1,6 +1,6 @@
 export type LinkProps = {
-  href: string;
-  label: string;
+  href?: string;
+  label?: string;
   className?: string;
   isMobile?: boolean;
   active?: boolean;

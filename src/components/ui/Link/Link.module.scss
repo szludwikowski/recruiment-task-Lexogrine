@@ -40,9 +40,5 @@
   &.active {
     font-weight: 700;
     opacity: 0.3;
-
-    &::after {
-      width: 100%;
-    }
   }
 }

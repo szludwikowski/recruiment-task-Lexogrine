@@ -1,10 +1,10 @@
 import { cx } from "class-variance-authority";
-import React from "react";
+import type { ElementType } from "react";
 
 import styles from "./Button.module.scss";
 import type { ButtonProps } from "./Button.types";
 
-const Button = <T extends React.ElementType = "button">({
+const Button = <T extends ElementType = "button">({
   children,
   as,
   variant = "primary",
