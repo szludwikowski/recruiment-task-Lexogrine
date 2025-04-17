@@ -1,25 +1,48 @@
-import Layout from "@components/layout/Layout";
-import Hero from "@components/sections/Hero";
+import { AuthProvider, useAuth } from "@context/AuthContext";
+import { AnimatePresence } from "framer-motion";
 import {
-  HERO_BUTTON_TEXT,
-  HERO_DESCRIPTION,
-  HERO_HEADING,
-} from "@constants/hero";
-import { AuthProvider } from "@context/AuthContext";
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import "./App.css";
+import Home from "./routes/Home/Home";
+import Pricing from "./routes/Pricing/Pricing";
+
+const AppRoutes = () => {
+  const { isLoggedIn } = useAuth();
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <Routes location={location} key={location.pathname}>
+        <Route
+          path="/"
+          element={isLoggedIn ? <Navigate to="/pricing" replace /> : <Home />}
+        />
+        <Route
+          path="/pricing"
+          element={isLoggedIn ? <Pricing /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path="*"
+          element={<Navigate to={isLoggedIn ? "/pricing" : "/"} replace />}
+        />
+      </Routes>
+    </AnimatePresence>
+  );
+};
 
 const App = () => (
   <AuthProvider>
-    <Layout>
-      <Hero
-        heading={HERO_HEADING}
-        description={HERO_DESCRIPTION}
-        buttonText={HERO_BUTTON_TEXT}
-      />
-    </Layout>
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
     <ToastContainer
       position="bottom-right"
       autoClose={5000}

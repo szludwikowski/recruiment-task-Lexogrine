@@ -103,3 +103,15 @@
     line-height: 1.625rem;
   }
 }
+
+@mixin text-label {
+  font-size: 0.675rem;
+  font-weight: 700;
+  line-height: 1.625rem; 
+  letter-spacing: 0.125rem;
+
+  @include desktop {
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+}

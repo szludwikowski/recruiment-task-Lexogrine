@@ -13,6 +13,7 @@ export default defineConfig({
       "@styles": path.resolve(__dirname, "src/styles"),
       "@constants": path.resolve(__dirname, "src/constants"),
       "@services": path.resolve(__dirname, "src/services"),
+      "@data": path.resolve(__dirname, "src/data"),
     },
   },
 });

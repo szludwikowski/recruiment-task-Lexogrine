@@ -1,4 +1,5 @@
 @use "@styles/typography" as *;
+@use "@styles/breakpoints" as *;
 
 .wrapper {
   @include text-button;
@@ -10,7 +11,7 @@
   border: none;
   border-radius: 2rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 
   &.primary {
     background-color: var(--third);
@@ -36,6 +37,28 @@
 
     &:hover {
       background-color: #0d8edb; 
+    }
+  }
+
+  &.outlined {
+    background-color: transparent;
+    color: var(--pricing-heading);
+    border: 2px solid var(--grey);
+    padding: 0.75rem 2.3rem ;
+
+    &:hover {
+      background-color: var(--grey);
+    }
+  }
+
+  &.highlight {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--white);
+    padding: 0.75rem 2.3rem ;
+
+    &:hover {
+      background-color: #1fc0ad;
     }
   }
 

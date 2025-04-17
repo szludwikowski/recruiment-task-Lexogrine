@@ -1,223 +1,141 @@
-@import '../../../styles/variables';
-@import '../../../styles/breakpoints';
-
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem 4rem;
-}
+@use "@styles/breakpoints" as *;
+@use "@styles/typography" as *;
 
 .header {
+  max-width: 38rem;
   text-align: center;
-  margin-bottom: 3rem;
+  margin: 0 auto 3rem;
 }
 
 .title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--heading);
-  
-  @include mobile {
-    font-size: 1.8rem;
-  }
+  @include heading-3;
+  color: var(--pricing-heading)
 }
 
 .subtitle {
-  font-size: 1.2rem;
+  @include text-body;
   color: var(--text);
-  max-width: 600px;
-  margin: 0 auto 2rem;
-}
-
-.switchContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 2rem;
-  
-  span {
-    font-size: 0.9rem;
-    color: var(--text);
-    transition: color 0.2s;
-    
-    &.active {
-      color: var(--primary);
-      font-weight: 600;
-    }
-    
-    .save {
-      display: inline-block;
-      background-color: rgba(37, 218, 197, 0.1);
-      color: var(--primary);
-      font-size: 0.7rem;
-      padding: 0.1rem 0.4rem;
-      border-radius: 10px;
-      margin-left: 0.5rem;
-      font-weight: 600;
-    }
-  }
-}
-
-.switch {
-  position: relative;
-  width: 48px;
-  height: 24px;
-  background-color: #e0e0e0;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  
-  &:hover {
-    background-color: darken(#e0e0e0, 5%);
-  }
-}
-
-.switchKnob {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 20px;
-  height: 20px;
-  background-color: #fff;
-  border-radius: 50%;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .plansContainer {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   gap: 2rem;
+  width: 100%;
   
-  @include mobile {
-    flex-direction: column;
-    align-items: center;
-    gap: 2.5rem;
+  @include tablet {
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
   }
 }
 
 .planCard {
   position: relative;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  padding: 2.5rem;
-  width: 330px;
-  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 350px;
   display: flex;
   flex-direction: column;
   
-  &:hover {
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-  }
-  
-  &.popular {
-    border: 2px solid var(--primary);
-    transform: scale(1.05);
-    
-    @include mobile {
-      transform: none;
-    }
-  }
-  
-  @include mobile {
-    width: 100%;
-    max-width: 350px;
-    padding: 2rem;
+  @include tablet {
+    width: 330px;
+    flex-shrink: 0;
   }
 }
 
-.popularBadge {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: var(--primary);
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 0.25rem 1rem;
-  border-radius: 20px;
+.planCardHeader {
+  border: 2px solid var(--grey);
+  border-radius: 10px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  
+  &.highlight {
+    background: var(--background);
+    border-color: var(--background);
+    color: var(--white);
+  }
 }
 
 .planName {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: var(--heading);
+  @include text-label;
+  text-transform: uppercase;
+  color: var(--pricing-heading);
+  
+  .highlight & {
+    color: var(--white);
+  }
 }
 
-.price {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+.priceContainer {
   display: flex;
-  align-items: baseline;
-  line-height: 1;
-  color: var(--heading);
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 2.5rem;
+  color: var(--pricing-heading);
+  max-height: 100px;
   
-  .currency {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-right: 0.2rem;
+  .highlight & {
+    color: var(--white);
   }
-  
-  .period {
-    font-size: 1rem;
-    color: var(--text);
-    font-weight: normal;
-    margin-left: 0.25rem;
-  }
+}
+
+.currencySymbol {
+  align-self: flex-start;
+}
+
+.priceValue {
+ @include heading-2;
+  padding-right: 0.75rem;
+}
+
+.pricePeriod {
+  @include text-body;
+  text-align: left;
 }
 
 .planDescription {
   color: var(--text);
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
+  @include text-body;
+  
+  .highlight & {
+    color: var(--white);
+  }
 }
 
-.features {
-  list-style: none;
-  margin: 0 0 2rem;
+.benefitsList {
+  display: grid;
+  margin: 2.5rem auto;
+  max-width: 200px;
   padding: 0;
-  flex-grow: 1;
+  list-style: none;
+  gap: 0.5rem;
 }
 
-.feature {
+.benefitItem {
   display: flex;
-  align-items: flex-start;
-  margin-bottom: 0.75rem;
-  font-size: 0.9rem;
-  color: var(--heading);
-  
-  .checkIcon {
-    color: var(--primary);
-    margin-right: 0.5rem;
-    font-weight: bold;
-  }
-}
-
-.selectButton {
-  width: 100%;
-  padding: 0.75rem;
-  font-weight: 600;
-}
-
-.footer {
-  margin-top: 3rem;
-  text-align: center;
-}
-
-.logoutLink {
-  font-size: 0.9rem;
+  align-items: center;
+  @include text-body;
   color: var(--text);
-  text-decoration: underline;
-  cursor: pointer;
   
-  &:hover {
-    color: var(--primary);
+  &.unavailable {
+    color: var(--grey);
   }
+}
+
+.checkIcon {
+  color: var(--primary);
+  margin-right: 0.5rem;
+  display: inline-flex;
+  
+  &.hidden {
+    opacity: 0;
+  }
+}
+
+.actionButton {
+  display: block;
+  margin: 0 auto;
 }

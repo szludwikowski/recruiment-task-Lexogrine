@@ -8,6 +8,7 @@ import {
   validateForm,
 } from "@utils/validation/formValidation";
 import { FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import styles from "./Form.module.scss";
@@ -21,6 +22,7 @@ const initialFormState: FormData = {
 
 const Form = ({ onSwitchToLogin }: FormProps) => {
   const { login } = useAuth();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [mode, setMode] = useState<FormMode>("signup");
   const [formState, setFormState] = useState<FormData>(initialFormState);
@@ -61,6 +63,7 @@ const Form = ({ onSwitchToLogin }: FormProps) => {
       if (response.success) {
         toast.success(response.message);
         login();
+        navigate("/pricing");
       } else {
         toast.error(response.message);
       }

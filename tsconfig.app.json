@@ -31,7 +31,8 @@
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"],
       "@constants/*": ["constants/*"],
-      "@services/*": ["services/*"]
+      "@services/*": ["services/*"],
+      "@data/*": ["data/*"]
     }
   },
   "include": ["src"]

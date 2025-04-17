@@ -1,4 +1,10 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 type AuthContextType = {
   isLoggedIn: boolean;
@@ -11,11 +17,29 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      sessionStorage.setItem("wasLoggedIn", isLoggedIn.toString());
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    const wasLoggedIn = sessionStorage.getItem("wasLoggedIn");
+    if (wasLoggedIn === "true") {
+      sessionStorage.removeItem("wasLoggedIn");
+      window.location.href = "/";
+    }
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [isLoggedIn]);
+
   const authValues = {
     isLoggedIn,
     login: () => {
       setIsLoggedIn(true);
-      window.history.pushState(null, "", "#prices");
+      window.history.pushState(null, "", "/pricing");
     },
     logout: () => setIsLoggedIn(false),
   };
