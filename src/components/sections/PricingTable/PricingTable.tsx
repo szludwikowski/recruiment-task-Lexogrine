@@ -1,5 +1,5 @@
 import Container from "@components/layout/Container";
-import { pricingPlans } from "@data/pricingData";
+import { pricingPlans } from "@constants";
 import { useAnimationVariants } from "@hooks/useAnimationVariants";
 import { motion } from "framer-motion";
 import React from "react";
