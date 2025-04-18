@@ -2,12 +2,13 @@ import Container from "@components/layout/Container";
 import { pricingPlans } from "@data/pricingData";
 import { useAnimationVariants } from "@hooks/useAnimationVariants";
 import { motion } from "framer-motion";
+import React from "react";
 
 import PricingBox from "./PricingBox";
 import styles from "./PricingTable.module.scss";
 import { PricingTableProps } from "./PricingTable.types";
 
-const PricingTable = ({ className }: PricingTableProps) => {
+const PricingTable: React.FC<PricingTableProps> = ({ className }) => {
   const { fadeIn, staggerContainer } = useAnimationVariants();
 
   return (

@@ -1,17 +1,18 @@
 import Button from "@components/ui/Button";
 import { useAnimationVariants } from "@hooks/useAnimationVariants";
 import { motion } from "framer-motion";
+import React from "react";
 
 import styles from "../PricingTable.module.scss";
 import { PricingBoxProps } from "./PricingBox.types";
 
-const PricingBox = ({
+const PricingBox: React.FC<PricingBoxProps> = ({
   name,
   price,
   benefits,
   highlight,
   index,
-}: PricingBoxProps) => {
+}) => {
   const { slideUp, staggerItem, buttonHover, buttonTap } =
     useAnimationVariants();
 

@@ -1,9 +1,14 @@
 import { cx } from "class-variance-authority";
+import React from "react";
 
 import styles from "./Container.module.scss";
 import type { ContainerProps } from "./Container.types";
 
-const Container = ({ children, className, ...rest }: ContainerProps) => (
+const Container: React.FC<ContainerProps> = ({
+  children,
+  className,
+  ...rest
+}) => (
   <div className={cx(styles.container, className)} {...rest}>
     {children}
   </div>

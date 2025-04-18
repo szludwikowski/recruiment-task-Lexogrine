@@ -1,9 +1,10 @@
 import { cx } from "class-variance-authority";
+import React from "react";
 
 import styles from "./Input.module.scss";
 import type { InputProps } from "./Input.types";
 
-const Input = ({
+const Input: React.FC<InputProps> = ({
   name,
   type = "text",
   placeholder,
@@ -17,7 +18,7 @@ const Input = ({
   autoComplete,
   ariaLabel,
   showError = true,
-}: InputProps) => {
+}) => {
   const hasError = Boolean(error);
   const errorId = hasError ? `${name}-error` : undefined;
 

@@ -1,16 +1,17 @@
 import { cx } from "class-variance-authority";
+import React from "react";
 
 import styles from "./Link.module.scss";
 import type { LinkProps } from "./Link.types";
 
-const Link = ({
+const Link: React.FC<LinkProps> = ({
   href,
   label,
   className,
   isMobile = false,
   active = false,
   onClick,
-}: LinkProps) => (
+}) => (
   <li className={cx(styles.listItem, className)}>
     <a
       href={href}

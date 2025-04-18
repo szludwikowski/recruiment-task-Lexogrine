@@ -1,5 +1,5 @@
 import { cx } from "class-variance-authority";
-import type { ElementType } from "react";
+import { ElementType } from "react";
 
 import styles from "./Button.module.scss";
 import type { ButtonProps } from "./Button.types";

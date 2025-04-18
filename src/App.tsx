@@ -10,11 +10,10 @@ import {
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import "./App.css";
 import Home from "./routes/Home/Home";
 import Pricing from "./routes/Pricing/Pricing";
 
-const AppRoutes = () => {
+const AppRoutes: React.FC = () => {
   const { isLoggedIn, isInitializing } = useAuth();
   const location = useLocation();
 
@@ -42,7 +41,7 @@ const AppRoutes = () => {
   );
 };
 
-const App = () => (
+const App: React.FC = () => (
   <AuthProvider>
     <BrowserRouter>
       <AppRoutes />

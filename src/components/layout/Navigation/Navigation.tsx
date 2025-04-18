@@ -4,13 +4,13 @@ import { useAuth } from "@context/AuthContext";
 import { useAnimationVariants } from "@hooks/useAnimationVariants";
 import { AnimatePresence, motion } from "framer-motion";
 import { Squash as Hamburger } from "hamburger-react";
-import { memo, useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 
 import Container from "../Container";
 import styles from "./Navigation.module.scss";
 import type { NavigationProps } from "./Navigation.types";
 
-const Navigation = memo(({ items, button }: NavigationProps) => {
+const Navigation: React.FC<NavigationProps> = memo(({ items, button }) => {
   const { isLoggedIn, logout } = useAuth();
   const [isOpen, setOpen] = useState(false);
   const [activeHash, setActiveHash] = useState(window.location.hash || "#");

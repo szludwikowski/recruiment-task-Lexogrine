@@ -4,18 +4,18 @@ import Form from "@components/ui/Form";
 import { useAuth } from "@context/AuthContext";
 import { useAnimationVariants } from "@hooks/useAnimationVariants";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./Hero.module.scss";
 import type { HeroProps } from "./Hero.types";
 
-const Hero = ({
+const Hero: React.FC<HeroProps> = ({
   className,
   heading,
   description,
   buttonText = "Learn More",
-}: HeroProps) => {
+}) => {
   const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
   const { slideInLeft, fadeIn, buttonHover, buttonTap } =

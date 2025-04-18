@@ -5,5 +5,5 @@ export type NavigationProps = {
     label: string;
     href: string;
   }[];
-  button: ButtonProps;
+  button: ButtonProps<"button">;
 };

@@ -5,7 +5,7 @@ import { useAuth } from "@context/AuthContext";
 import { useForm } from "@hooks/useForm";
 import { signIn, signUp } from "@services/authService";
 import { FormData, validateForm } from "@utils/validation/formValidation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -18,7 +18,7 @@ const initialFormState: FormData = {
   agreedToTerms: false,
 };
 
-const Form = ({ onSwitchToLogin }: FormProps) => {
+const Form: React.FC<FormProps> = ({ onSwitchToLogin }) => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [mode, setMode] = useState<FormMode>("signup");
