@@ -6,7 +6,6 @@
   color: var(--white);
   padding: 2rem 0;
 
-
   @include desktop {
    padding: 4rem 0;
   }
@@ -43,13 +42,21 @@
 
 .heading {
   @include heading-2;
-  color: var(--white);
+  
+  & {
+    color: var(--white);
+  }
+  
   margin: 0; 
 }
 
 .description {
   @include heading-5;
-  color: var(--white);
+  
+  & {
+    color: var(--white);
+  }
+  
   max-width: 23rem;
   margin: 0; 
 }

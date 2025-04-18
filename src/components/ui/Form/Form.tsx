@@ -23,7 +23,6 @@ const Form = ({ onSwitchToLogin }: FormProps) => {
   const [mode, setMode] = useState<FormMode>("signup");
   const isSignup = mode === "signup";
 
-  // Use our custom form hook with explicit type parameter
   const {
     values,
     errors,
@@ -56,7 +55,6 @@ const Form = ({ onSwitchToLogin }: FormProps) => {
     },
   });
 
-  // Reset form when mode changes
   useEffect(() => {
     reset();
   }, [mode, reset]);
@@ -72,7 +70,6 @@ const Form = ({ onSwitchToLogin }: FormProps) => {
     }
   };
 
-  // Show error only if field has been touched or form was submitted
   const shouldShowError = (field: keyof FormData) =>
     touched[field] && errors[field];
 

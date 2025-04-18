@@ -10,7 +10,11 @@
 
 .heading {
   @include heading-3;
-  color: var(--heading);
+  
+  & {
+    color: var(--heading);
+  }
+  
   text-align: center;
   margin-bottom: 1rem;
 }

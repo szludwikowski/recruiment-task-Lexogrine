@@ -18,7 +18,6 @@ const AppRoutes = () => {
   const { isLoggedIn, isInitializing } = useAuth();
   const location = useLocation();
 
-  // Show a loading state while authentication is being checked
   if (isInitializing) {
     return <div>Loading...</div>;
   }

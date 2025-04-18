@@ -16,12 +16,7 @@ const PricingBox = ({
     useAnimationVariants();
 
   return (
-    <motion.div
-      className={styles.planCard}
-      variants={slideUp}
-      custom={index}
-      // The slideUp variant handles initial and animate states through parent
-    >
+    <motion.div className={styles.planCard} variants={slideUp} custom={index}>
       <div
         className={`${styles.planCardHeader} ${highlight ? styles.highlight : ""}`}
       >
@@ -49,7 +44,6 @@ const PricingBox = ({
             key={idx}
             className={`${styles.benefitItem} ${!item.available ? styles.unavailable : ""}`}
             variants={staggerItem}
-            // These variants will be controlled by the parent container
           >
             <span
               className={`${styles.checkIcon} ${!item.available ? styles.hidden : ""}`}

@@ -3,10 +3,13 @@
 
 .wrapper {
   width: 100%;
-  padding-block: 2rem;
-  color: var(--white);
+  padding-block: 2rem;  
   position: relative;
-  z-index: 100; // Ensure navigation is above other content
+  z-index: 100; 
+  
+  & {
+    color: var(--white);
+  }
 }
 
 .innerWrapper {
@@ -17,7 +20,10 @@
 
 .logo {
   @include text-button;
-  color: var(--white);
+  
+  & {
+    color: var(--white);
+  }
 }
 
 .desktopNav {

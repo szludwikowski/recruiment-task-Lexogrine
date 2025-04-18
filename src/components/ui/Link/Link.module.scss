@@ -6,11 +6,14 @@
 
 .link {
   @include text-button;
-  display: block;
-  font-weight: 500;
-  color: var(--white);
-  text-decoration: none;
-  position: relative;
+  
+  & {
+    display: block;
+    font-weight: 500;
+    color: var(--white);
+    text-decoration: none;
+    position: relative;
+  }
 
   &::after {
     content: "";

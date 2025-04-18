@@ -17,7 +17,6 @@ const Navigation = memo(({ items, button }: NavigationProps) => {
   const [activePath, setActivePath] = useState(window.location.pathname);
   const { staggerContainer, staggerItem } = useAnimationVariants();
 
-  // Enhanced navigation with logout functionality
   const enhancedButton = {
     ...button,
     ...(isLoggedIn && {
@@ -33,11 +32,9 @@ const Navigation = memo(({ items, button }: NavigationProps) => {
     const handleLocationChange = () => {
       setActiveHash(window.location.hash || "#");
       setActivePath(window.location.pathname);
-      // Close mobile menu on navigation
       setOpen(false);
     };
 
-    // Close menu on window resize (especially to desktop size)
     const handleResize = () => {
       if (window.innerWidth >= 1025 && isOpen) {
         setOpen(false);
@@ -57,7 +54,6 @@ const Navigation = memo(({ items, button }: NavigationProps) => {
     };
   }, [isOpen]);
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -129,7 +125,7 @@ const Navigation = memo(({ items, button }: NavigationProps) => {
             exit={{ opacity: 0, y: -20 }}
             transition={{
               duration: 0.3,
-              ease: [0.16, 1, 0.3, 1], // ease-out-expo
+              ease: [0.16, 1, 0.3, 1],
             }}
           >
             <motion.ul

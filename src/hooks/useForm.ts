@@ -35,15 +35,11 @@ export function useForm<T extends FieldValues>({
 
       setValues((prev) => ({ ...prev, [name]: newValue }));
 
-      // Clear error when field is changed
       if (errors[name as keyof ValidationErrors]) {
         setErrors((prev) => ({ ...prev, [name]: undefined }));
       }
-
-      // Mark as touched
       setTouched((prev) => ({ ...prev, [name]: true }));
 
-      // Validate field on change
       const fieldError = validateField(name, newValue);
       if (fieldError) {
         setErrors((prev) => ({ ...prev, [name]: fieldError }));
@@ -57,10 +53,8 @@ export function useForm<T extends FieldValues>({
       const { name, value, type, checked } = e.target;
       const fieldValue = type === "checkbox" ? checked : value;
 
-      // Mark as touched
       setTouched((prev) => ({ ...prev, [name]: true }));
 
-      // Validate on blur
       const fieldError = validateField(name, fieldValue);
       if (fieldError) {
         setErrors((prev) => ({ ...prev, [name]: fieldError }));
@@ -79,7 +73,6 @@ export function useForm<T extends FieldValues>({
     async (e: FormEvent) => {
       e.preventDefault();
 
-      // Mark all fields as touched
       const allTouched = Object.keys(values).reduce<Record<string, boolean>>(
         (acc, key) => ({ ...acc, [key]: true }),
         {},

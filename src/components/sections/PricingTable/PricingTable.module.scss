@@ -9,12 +9,18 @@
 
 .title {
   @include heading-3;
-  color: var(--pricing-heading)
+  
+  & {
+    color: var(--pricing-heading);
+  }
 }
 
 .subtitle {
   @include text-body;
-  color: var(--text);
+  
+  & {
+    color: var(--text);
+  }
 }
 
 .plansContainer {
@@ -54,14 +60,20 @@
   &.highlight {
     background: var(--background);
     border-color: var(--background);
-    color: var(--white);
+    
+    & {
+      color: var(--white);
+    }
   }
 }
 
 .planName {
   @include text-label;
   text-transform: uppercase;
-  color: var(--pricing-heading);
+  
+  & {
+    color: var(--pricing-heading);
+  }
   
   .highlight & {
     color: var(--white);
@@ -74,8 +86,10 @@
   align-items: center;
   gap: 1rem;
   padding-bottom: 2.5rem;
-  color: var(--pricing-heading);
-  max-height: 100px;
+  
+  & {
+    color: var(--pricing-heading);
+  }
   
   .highlight & {
     color: var(--white);
@@ -97,8 +111,11 @@
 }
 
 .planDescription {
-  color: var(--text);
   @include text-body;
+  
+  & {
+    color: var(--text);
+  }
   
   .highlight & {
     color: var(--white);
@@ -118,7 +135,10 @@
   display: flex;
   align-items: center;
   @include text-body;
-  color: var(--text);
+  
+  & {
+    color: var(--text);
+  }
   
   &.unavailable {
     color: var(--grey);
@@ -126,9 +146,12 @@
 }
 
 .checkIcon {
-  color: var(--primary);
   margin-right: 0.5rem;
   display: inline-flex;
+  
+  & {
+    color: var(--primary);
+  }
   
   &.hidden {
     opacity: 0;
