@@ -1,10 +1,7 @@
 @use "variables" as *;
 @use "breakpoints" as *;
 @use "typography" as *;
-@use './_fonts.scss';
-
-
-
+@use "fonts" as *;
 *,
 *::before,
 *::after {

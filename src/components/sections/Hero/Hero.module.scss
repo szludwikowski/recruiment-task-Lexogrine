@@ -1,0 +1,87 @@
+@use "@styles/breakpoints" as *;
+@use "@styles/typography" as *;
+
+.wrapper {
+  background-color: var(--background);
+  color: var(--white);
+  padding: 2rem 0;
+
+  @include desktop {
+   padding: 4rem 0;
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  
+  @include desktop {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 4rem; 
+  }
+}
+  
+.content {
+  width: 100%;
+  max-width: 32rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem; 
+
+  @include desktop {
+    flex: 1;
+    padding-top: 3.5rem;
+    padding-inline: 0;
+  }
+}
+
+.heading {
+  @include heading-2;
+  
+  & {
+    color: var(--white);
+    margin: 0;
+  }
+}
+
+.description {
+  @include heading-5;
+  
+  & {
+    color: var(--white);
+    max-width: 23rem;
+    margin: 0;
+  }
+}
+
+.button {
+  margin-top: 1.5rem; 
+  width: fit-content;
+}
+
+.formWrapper {
+  background-color: var(--white);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 30rem;
+  min-height: 37.5rem;
+  margin-inline: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include desktop {
+    margin-inline: 0;
+    flex: 1;
+    padding: 2rem 4rem;
+  }
+}
+
+

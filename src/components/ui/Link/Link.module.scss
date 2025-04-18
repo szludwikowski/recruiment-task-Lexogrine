@@ -1,0 +1,47 @@
+@use "@styles/typography" as *;
+
+.listItem {
+  list-style-type: none;
+}
+
+.link {
+  @include text-button;
+  
+  & {
+    display: block;
+    font-weight: 500;
+    color: var(--white);
+    text-decoration: none;
+    position: relative;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: var(--white);
+    transition: width 0.3s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+
+  &.mobile {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--white);
+
+    &::after {
+      background-color: var(--white);
+    }
+  }
+
+  &.active {
+    font-weight: 700;
+    opacity: 0.3;
+  }
+}

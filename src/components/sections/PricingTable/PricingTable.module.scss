@@ -1,0 +1,170 @@
+@use "@styles/breakpoints" as *;
+@use "@styles/typography" as *;
+
+.header {
+  max-width: 38rem;
+  text-align: center;
+  margin: 0 auto 3rem;
+}
+
+.title {
+  @include heading-3;
+  
+  & {
+    color: var(--pricing-heading);
+  }
+}
+
+.subtitle {
+  @include text-body;
+  
+  & {
+    color: var(--text);
+  }
+}
+
+.plansContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  
+  @include tablet {
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+  }
+}
+
+.planCard {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  
+  @include tablet {
+    width: 330px;
+    flex-shrink: 0;
+  }
+}
+
+.planCardHeader {
+  border: 2px solid var(--grey);
+  border-radius: 10px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  
+  &.highlight {
+    background: var(--background);
+    border-color: var(--background);
+    
+    & {
+      color: var(--white);
+    }
+  }
+}
+
+.planName {
+  @include text-label;
+  
+  & {
+    color: var(--pricing-heading);
+    text-transform: uppercase;
+  }
+  
+  .highlight & {
+    color: var(--white);
+  }
+}
+
+.priceContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 2.5rem;
+  
+  & {
+    color: var(--pricing-heading);
+  }
+  
+  .highlight & {
+    color: var(--white);
+  }
+}
+
+.currencySymbol {
+  align-self: flex-start;
+}
+
+.priceValue {
+ @include heading-2;
+  
+  & {
+    padding-right: 0.75rem;
+  }
+}
+
+.pricePeriod {
+  @include text-body;
+  
+  & {
+    text-align: left;
+  }
+}
+
+.planDescription {
+  @include text-body;
+  
+  & {
+    color: var(--text);
+  }
+  
+  .highlight & {
+    color: var(--white);
+  }
+}
+
+.benefitsList {
+  display: grid;
+  margin: 2.5rem auto;
+  max-width: 200px;
+  padding: 0;
+  list-style: none;
+  gap: 0.5rem;
+}
+
+.benefitItem {
+  display: flex;
+  align-items: center;
+  @include text-body;
+  
+  & {
+    color: var(--text);
+  }
+  
+  &.unavailable {
+    color: var(--grey);
+  }
+}
+
+.checkIcon {
+  margin-right: 0.5rem;
+  display: inline-flex;
+  
+  & {
+    color: var(--primary);
+  }
+  
+  &.hidden {
+    opacity: 0;
+  }
+}
+
+.actionButton {
+  display: block;
+  margin: 0 auto;
+}
