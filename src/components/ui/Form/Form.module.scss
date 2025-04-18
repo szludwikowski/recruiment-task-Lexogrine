@@ -13,10 +13,9 @@
   
   & {
     color: var(--heading);
+    text-align: center;
+    margin-bottom: 1rem;
   }
-  
-  text-align: center;
-  margin-bottom: 1rem;
 }
 
 .checkboxGroup {
@@ -25,11 +24,14 @@
 
 .checkboxWrapper {
   @include text-body;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--text);
-  cursor: pointer;
+  
+  & {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text);
+    cursor: pointer;
+  }
 }
 
 .checkbox {
@@ -42,11 +44,14 @@
 
 .divider {
   @include text-body;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  text-align: center;
-  margin: 0.5rem 0;
+  
+  & {
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 0.5rem 0;
+  }
   
   &::before,
   &::after {
@@ -67,8 +72,11 @@
 
 .loginText {
   @include text-article;
-  text-align: center;
-  color: var(--text);
+  
+  & {
+    text-align: center;
+    color: var(--text);
+  }
 }
 
 .switchButton {

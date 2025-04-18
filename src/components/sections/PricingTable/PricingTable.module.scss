@@ -69,10 +69,10 @@
 
 .planName {
   @include text-label;
-  text-transform: uppercase;
   
   & {
     color: var(--pricing-heading);
+    text-transform: uppercase;
   }
   
   .highlight & {
@@ -102,12 +102,18 @@
 
 .priceValue {
  @include heading-2;
-  padding-right: 0.75rem;
+  
+  & {
+    padding-right: 0.75rem;
+  }
 }
 
 .pricePeriod {
   @include text-body;
-  text-align: left;
+  
+  & {
+    text-align: left;
+  }
 }
 
 .planDescription {

@@ -45,9 +45,8 @@
   
   & {
     color: var(--white);
+    margin: 0;
   }
-  
-  margin: 0; 
 }
 
 .description {
@@ -55,10 +54,9 @@
   
   & {
     color: var(--white);
+    max-width: 23rem;
+    margin: 0;
   }
-  
-  max-width: 23rem;
-  margin: 0; 
 }
 
 .button {
