@@ -1,10 +1,6 @@
-import Layout from "@components/layout/Layout";
-import Hero from "@components/sections/Hero";
-import {
-  HERO_BUTTON_TEXT,
-  HERO_DESCRIPTION,
-  HERO_HEADING,
-} from "@constants/hero";
+import { Layout } from "@components/layout";
+import { Hero } from "@components/sections";
+import { HERO_BUTTON_TEXT, HERO_DESCRIPTION, HERO_HEADING } from "@constants";
 import React from "react";
 
 const Home: React.FC = () => {

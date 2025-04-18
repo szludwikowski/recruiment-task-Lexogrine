@@ -1,4 +1,4 @@
-import PricingTable from "@components/sections/PricingTable";
+import { PricingTable } from "@components/sections";
 import React from "react";
 
 import styles from "./Pricing.module.scss";

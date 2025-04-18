@@ -1,5 +1,5 @@
-import Navigation from "@components/layout/Navigation";
-import { NAV_CTA, NAV_ITEMS } from "@constants/navigation";
+import { Navigation } from "@components/layout";
+import { NAV_CTA, NAV_ITEMS } from "@constants";
 import React from "react";
 
 import type { LayoutProps } from "./Layout.types";

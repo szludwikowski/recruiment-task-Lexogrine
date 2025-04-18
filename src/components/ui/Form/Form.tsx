@@ -1,6 +1,6 @@
 import Button from "@components/ui/Button";
 import Input from "@components/ui/Input";
-import { FORM_CONTENT } from "@constants/form";
+import { FORM_CONTENT } from "@constants";
 import { useAuth } from "@context/AuthContext";
 import { useForm } from "@hooks/useForm";
 import { signIn, signUp } from "@services/authService";
