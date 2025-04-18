@@ -19,36 +19,6 @@
   margin-bottom: 1rem;
 }
 
-.inputGroup {
-  position: relative;
-  width: 100%;
-}
-
-.input {
-  @include text-button;
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border-radius: 9999px;
-  border: 1px solid var(--grey);
-  color: var(--text);
-  box-sizing: border-box;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-
-  &:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 2px rgba(37, 218, 197, 0.2);
-  }
-  
-  &.inputError {
-    border-color: var(--third);
-    
-    &:focus {
-      box-shadow: 0 0 0 2px rgba(233, 58, 125, 0.2);
-    }
-  }
-}
-
 .checkboxGroup {
   margin-bottom: 0.5rem;
 }

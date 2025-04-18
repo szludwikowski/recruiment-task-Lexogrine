@@ -1,4 +1,5 @@
 import Button from "@components/ui/Button";
+import Input from "@components/ui/Input";
 import { FORM_CONTENT } from "@constants/form";
 import { useAuth } from "@context/AuthContext";
 import { useForm } from "@hooks/useForm";
@@ -71,49 +72,33 @@ const Form = ({ onSwitchToLogin }: FormProps) => {
   };
 
   const shouldShowError = (field: keyof FormData) =>
-    touched[field] && errors[field];
+    Boolean(touched[field] && errors[field]);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
       <h2 className={styles.heading}>{content.heading}</h2>
 
-      <div className={styles.inputGroup}>
-        <input
-          type="email"
-          name="email"
-          placeholder={commonContent.emailPlaceholder}
-          className={`${styles.input} ${shouldShowError("email") ? styles.inputError : ""}`}
-          value={values.email}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          aria-invalid={!!errors.email}
-          aria-describedby={errors.email ? "email-error" : undefined}
-        />
-        {shouldShowError("email") && (
-          <span className={styles.error} id="email-error" role="alert">
-            {errors.email}
-          </span>
-        )}
-      </div>
+      <Input
+        type="email"
+        name="email"
+        placeholder={commonContent.emailPlaceholder}
+        value={values.email}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={touched.email ? errors.email : undefined}
+        showError={shouldShowError("email")}
+      />
 
-      <div className={styles.inputGroup}>
-        <input
-          type="password"
-          name="password"
-          placeholder={commonContent.passwordPlaceholder}
-          className={`${styles.input} ${shouldShowError("password") ? styles.inputError : ""}`}
-          value={values.password}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          aria-invalid={!!errors.password}
-          aria-describedby={errors.password ? "password-error" : undefined}
-        />
-        {shouldShowError("password") && (
-          <span className={styles.error} id="password-error" role="alert">
-            {errors.password}
-          </span>
-        )}
-      </div>
+      <Input
+        type="password"
+        name="password"
+        placeholder={commonContent.passwordPlaceholder}
+        value={values.password}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={touched.password ? errors.password : undefined}
+        showError={shouldShowError("password")}
+      />
 
       {isSignup && (
         <div className={styles.checkboxGroup}>
